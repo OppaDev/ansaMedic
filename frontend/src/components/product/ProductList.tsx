@@ -1,20 +1,19 @@
-// components/product/ProductList.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
-import { Product } from '../../types/product';
+import  PoductsData from '../../../public/json/products/products.json';
 
-interface ProductListProps {
-  products: Product[];
-}
+export default function ProductList() {
+  const [products] = useState(PoductsData.products);
 
-const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {products.map(product => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard
+          imageUrl={product.imageUrl}
+          name={product.name}
+          description={product.description}
+        />
       ))}
     </div>
-  );
-};
-
-export default ProductList;
+  )
+}

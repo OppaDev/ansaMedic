@@ -5,7 +5,7 @@ import { useCloudinaryImages } from '../../hooks/useCloudinaryImages';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = useCloudinaryImages('HeroSection');
+  const slides = useCloudinaryImages('HeroSection') || [];
 
   useEffect(() => {
     if (slides.length === 0) return;
@@ -22,7 +22,8 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-teal-800 to-teal-900 text-white">
       <div className="absolute inset-0 z-0">
-        {slides.map((slide, index) => (
+        {Array.isArray(slides) && slides.length > 0 ? (
+        slides.map((slide, index) => (
           <Image
             key={index}
             src={slide}
@@ -31,7 +32,11 @@ const HeroSection = () => {
             objectFit="cover"
             className={`transition-opacity duration-1000 ${index === currentSlide ? 'opacity-60' : 'opacity-0'}`}
           />
-        ))}
+        ))
+        ):(
+          <div>Cargando...</div>
+        )
+      }
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
