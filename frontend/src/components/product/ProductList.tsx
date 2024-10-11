@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
-import  ProductsData from '../../../public/json/products/products.json';
+import ProductsData from '../../../public/json/products/products.json';
+
 
 export default function ProductList() {
   const [currentPage, setCutrrntPage] = useState(1);
-  const prodictPerPage = 9; // cambiar este valor segun los productos a mostrar
+  const prodictPerPage = 6; // cambiar este valor segun los productos a mostrar
   const [products] = useState(ProductsData.products);
 
   //productos a mostrar
@@ -21,7 +22,7 @@ export default function ProductList() {
   }
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {currentProducts.map(product => (
           <ProductCard
