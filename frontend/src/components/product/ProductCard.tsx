@@ -1,12 +1,14 @@
 import { FaWhatsapp, FaInfoCircle } from 'react-icons/fa'
 
 interface ProductCardProps {
+  id: string
   imageUrl: string
   name: string
   description: string
 }
 
-export default function Component({ imageUrl, name, description }: ProductCardProps = {
+export default function Component({ id ,imageUrl, name, description }: ProductCardProps = {
+  id: '1',
   imageUrl: 'https://via.placeholder.com/200x150',
   name: 'Nombre del Producto',
   description: 'Descripción del producto. Aquí se incluye una breve descripción de las características y beneficios del producto.'
@@ -16,7 +18,7 @@ export default function Component({ imageUrl, name, description }: ProductCardPr
   }
 
   const handleLearnMoreClick = () => {
-    console.log('Saber más sobre:', name)
+    console.log('Saber más sobre:', id)
   }
 
   return (
@@ -39,7 +41,7 @@ export default function Component({ imageUrl, name, description }: ProductCardPr
             className="flex-1 bg-white hover:bg-gray-100 text-teal-600 font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center border border-teal-600"
           >
             <FaInfoCircle className="mr-2" />
-            Saber más
+            Detalles
           </button>
           <button
             onClick={handleWhatsAppClick}

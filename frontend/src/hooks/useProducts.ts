@@ -1,4 +1,3 @@
-// hooks/useProducts.ts
 
 import { useState, useEffect, useCallback } from 'react';
 import { Product, CreateProductInput, UpdateProductInput } from '../types/product';

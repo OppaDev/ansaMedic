@@ -2,12 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout/Layout'
 import ProductList from '../components/product/ProductList'
-import { useProducts } from '../hooks/useProducts'
-import ProductCard from '../components/product/ProductCard'
+
 
 const Products: NextPage = () => {
-  const { products, loading, error } = useProducts()
-
   return (
     <Layout>
       <Head>
@@ -16,8 +13,7 @@ const Products: NextPage = () => {
       </Head>
 
       <main>
-        <ProductList products={products} />
-        
+        <ProductList />      
       </main>
     </Layout>
   )
