@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ProductsCategoriesData from '../../../public/json/products/productsCategories.json';
 
-// Interfaces 
+// Interfaces actualizadas
 interface Product {
   id: string;
   imageUrl: string;
   name: string;
   description: string;
+  details?: {
+    images: string[];
+    features: string[];
+    specifications: { name: string; value: string }[];
+  }[];
 }
 
 interface Category {
@@ -16,24 +21,22 @@ interface Category {
   products: Product[];
 }
 
-interface ProductData {
-  categories: Category[];
-}
 
-//obtener todas las categorias
+
+// Funciones de utilidad actualizadas
 function getAllCategories(): Category[] {
   return ProductsCategoriesData.categories;
 }
-//obtener productos por categoria
+
 function getProductsByCategory(categoryId: string): Product[] | undefined {
   const category = ProductsCategoriesData.categories.find(category => category.id === categoryId);
   return category?.products;
 }
-//obtener todos los poductos
+
 function getAllProducts(): Product[] {
   return ProductsCategoriesData.categories.flatMap(category => category.products);
 }
-//obtener producto por id
+
 function getProductById(productId: string): Product | undefined {
   return getAllProducts().find(product => product.id === productId);
 }
@@ -108,10 +111,7 @@ export default function ProductList() {
             {currentProducts.map(product => (
               <ProductCard
                 key={product.id}
-                id={product.id}
-                imageUrl={product.imageUrl}
-                name={product.name}
-                description={product.description}
+                product={product}
               />
             ))}
           </div>
