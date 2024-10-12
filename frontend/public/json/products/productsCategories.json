@@ -8,13 +8,94 @@
                     "id": "1",
                     "imageUrl": "https://dentalevamarcos.com/wp-content/uploads/2021/12/utilizar-cepillo-dental-electrico.jpg",
                     "name": "Cepillo Dental Eléctrico Pro-Care",
-                    "description": "Cepillo eléctrico con tecnología sónica avanzada, 5 modos de limpieza y sensor de presión para una limpieza profesional."
+                    "description": "Cepillo eléctrico con tecnología sónica avanzada, 5 modos de limpieza y sensor de presión para una limpieza profesional.",
+                    "details": [
+                        {
+                            "images": [
+                                "https://via.placeholder.com/200x150",
+                                "https://via.placeholder.com/200x150",
+                                "https://via.placeholder.com/200x150"
+                            ],
+                            "features": [
+                                "Tecnología sónica de alta frecuencia",
+                                "5 modos de limpieza personalizados",
+                                "Sensor de presión inteligente",
+                                "Temporizador de 2 minutos",
+                                "Batería recargable de larga duración",
+                                "Cabezales de repuesto incluidos"
+                            ],
+                            "specifications": [
+                                {
+                                    "name": "Tecnología",
+                                    "value": "Sónica"
+                                },
+                                {
+                                    "name": "Modos de Limpieza",
+                                    "value": "5"
+                                },
+                                {
+                                    "name": "Sensor de Presión",
+                                    "value": "Sí"
+                                },
+                                {
+                                    "name": "Temporizador",
+                                    "value": "2 minutos"
+                                },
+                                {
+                                    "name": "Batería",
+                                    "value": "Recargable"
+                                },
+                                {
+                                    "name": "Cabezales",
+                                    "value": "Incluidos"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "id": "4",
                     "imageUrl": "https://via.placeholder.com/200x150",
                     "name": "Pasta Dental Blanqueadora Premium",
-                    "description": "Fórmula profesional que elimina manchas y protege el esmalte dental para una sonrisa más brillante."
+                    "description": "Fórmula profesional que elimina manchas y protege el esmalte dental para una sonrisa más brillante.",
+                    "details": [
+                        {
+                            "images": [
+                                "https://via.placeholder.com/200x150",
+                                "https://via.placeholder.com/200x150",
+                                "https://via.placeholder.com/200x150"
+                            ],
+                            "features": [
+                                "Blanqueamiento avanzado",
+                                "Protección del esmalte",
+                                "Sabor fresco y duradero",
+                                "Fórmula sin flúor",
+                                "Envase reciclable"
+                            ],
+                            "specifications": [
+                                {
+                                    "name": "Blanqueamiento",
+                                    "value": "Avanzado"
+                                },
+                                {
+                                    "name": "Protección del Esmalte",
+                                    "value": "Sí"
+                                },
+                                {
+                                    "name": "Sabor",
+                                    "value": "Fresco"
+                                },
+                                {
+                                    "name": "Flúor",
+                                    "value": "Sin"
+                                },
+                                {
+                                    "name": "Envase",
+                                    "value": "Reciclable"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "id": "5",
@@ -33,6 +114,42 @@
                     "imageUrl": "https://via.placeholder.com/200x150",
                     "name": "Cepillo Dental de Bambú",
                     "description": "Cepillo ecológico con cerdas suaves y mango biodegradable de bambú sostenible."
+                },
+                {
+                    "id": "19",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Kit de Limpieza de Lengua",
+                    "description": "Set de limpieza de lengua con raspador de cobre y pasta de limpieza natural."
+                },
+                {
+                    "id": "20",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Cepillo Interdental",
+                    "description": "Cepillo con cabezal intercambiable para limpieza entre los dientes y alrededor de los brackets."
+                },
+                {
+                    "id": "21",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Pasta Dental Sensible",
+                    "description": "Fórmula suave y refrescante para dientes sensibles con tecnología de alivio rápido."
+                },
+                {
+                    "id": "22",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Enjuague Bucal Natural",
+                    "description": "Fórmula orgánica con aceites esenciales y extractos de plantas para una higiene bucal natural."
+                },
+                {
+                    "id": "26",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Cepillo de Dientes Infantil",
+                    "description": "Cepillo suave y divertido para niños con diseño ergonómico y cerdas de colores."
+                },
+                {
+                    "id": "31",
+                    "imageUrl": "https://via.placeholder.com/200x150",
+                    "name": "Kit de Higiene Bucal",
+                    "description": "Set completo de higiene dental con cepillo, pasta, hilo y enjuague bucal."
                 }
             ]
         },

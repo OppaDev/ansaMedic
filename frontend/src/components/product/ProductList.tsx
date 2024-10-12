@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ProductsCategoriesData from '../../../public/json/products/productsCategories.json';
 
-// Interfaces (se mantienen iguales)
+// Interfaces 
 interface Product {
   id: string;
   imageUrl: string;
@@ -20,17 +20,22 @@ interface ProductData {
   categories: Category[];
 }
 
+//obtener todas las categorias
 function getAllCategories(): Category[] {
   return ProductsCategoriesData.categories;
 }
-
+//obtener productos por categoria
 function getProductsByCategory(categoryId: string): Product[] | undefined {
   const category = ProductsCategoriesData.categories.find(category => category.id === categoryId);
   return category?.products;
 }
-
+//obtener todos los poductos
 function getAllProducts(): Product[] {
   return ProductsCategoriesData.categories.flatMap(category => category.products);
+}
+//obtener producto por id
+function getProductById(productId: string): Product | undefined {
+  return getAllProducts().find(product => product.id === productId);
 }
 
 export default function ProductList() {
@@ -71,7 +76,7 @@ export default function ProductList() {
           <h2 className="text-lg font-semibold mb-4 text-teal-700">Categorías</h2>
           <div className="space-y-2">
             <div 
-              className={`cursor-pointer p-2 rounded transition-colors duration-200 ${
+              className={`text-sm cursor-pointer p-2 rounded transition-colors duration-200 ${
                 selectedCategory === 'all' 
                   ? 'text-teal-700 font-medium' 
                   : 'text-gray-700 hover:text-teal-700'
@@ -83,7 +88,7 @@ export default function ProductList() {
             {getAllCategories().map(category => (
               <div 
                 key={category.id} 
-                className={`cursor-pointer p-2 rounded transition-colors duration-200 ${
+                className={`text-sm cursor-pointer p-2 rounded transition-colors duration-200 ${
                   selectedCategory === category.id 
                     ? 'text-teal-700 font-medium' 
                     : 'text-gray-700 hover:text-teal-700'
