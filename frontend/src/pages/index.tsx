@@ -6,11 +6,10 @@ import FeaturedProducts from '../components/home/FeaturedProducts';
 import TechnicalService from '../components/home/TechnicalService';
 import Testimonials from '../components/home/Testiomonials';
 import CallToAction from '../components/home/CallToAction';
-import { useProducts } from '../hooks/useProducts';
+import EmprendeSection from '../components/home/EmprendeSection';
 import { SEO_CONSTANTS } from '../utils/constants';
 
 const Home = () => {
-  const { featuredProducts } = useProducts();
 
   return (
     <Layout>
@@ -28,8 +27,9 @@ const Home = () => {
 
       <main className="overflow-x-hidden">
         <HeroSection />
-        <FeaturedProducts products={featuredProducts} />
+        <FeaturedProducts/>
         <TechnicalService />
+        <EmprendeSection />
         <Testimonials />
         <CallToAction />
       </main>
