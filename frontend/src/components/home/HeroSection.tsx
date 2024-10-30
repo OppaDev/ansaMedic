@@ -1,76 +1,142 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useCloudinaryImages } from '../../hooks/useCloudinaryImages';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaArrowRight, FaEnvelope } from 'react-icons/fa';
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = useCloudinaryImages('HeroSection');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const slides = ['/images1.jpg', '/images2.jpg', '/images3.jpg'];
 
   useEffect(() => {
-    if (slides.length === 0) return;
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, 5000);
-    return () => clearInterval(timer);
-  }, [slides]);
 
-  if (slides.length === 0) {
-    return <div>Cargando...</div>; // O cualquier otro componente de carga
-  }
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simular envío
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-teal-800 to-teal-900 text-white">
+    <section className="relative h-screen bg-gradient-to-r from-teal-800 to-teal-600 text-white overflow-hidden">
       <div className="absolute inset-0 z-0">
-        {slides.map((slide, index) => (
-          <Image
-            key={index}
-            src={slide}
-            alt={`Equipo dental ${index + 1}`}
-            layout="fill"
-            objectFit="cover"
-            className={`transition-opacity duration-1000 ${index === currentSlide ? 'opacity-60' : 'opacity-0'}`}
-          />
-        ))}
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slides[currentSlide]}
+              alt={`Equipo dental ${currentSlide + 1}`}
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
-        <div className="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up">DentalPro Supplies</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-in-up animation-delay-300">Innovación, calidad superior y soporte técnico para tu práctica dental</p>
-          <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="bg-white text-teal-600 hover:bg-teal-100 font-bold py-3 px-8 rounded-full transition duration-300 animate-fade-in-up animation-delay-600">
-              Explorar Productos
-            </button>
-            <Link href="https://wa.me/TUNUMERODEWHATSAPP" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 flex items-center justify-center animate-fade-in-up animation-delay-900">
-              <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.4 3.6C18.2 1.3 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.5 4.2 1.5 6L0 24l6.2-1.5c1.8.9 3.8 1.4 5.8 1.4 6.6 0 12-5.4 12-12 0-3.2-1.3-6.2-3.6-8.4zM12 22c-1.8 0-3.5-.5-5-1.3l-.4-.2-3.8.9.9-3.8-.2-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10zm5.5-7.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.2-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.4.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.6-.5-.8-.5-.2 0-.4 0-.6 0-.2 0-.5.1-.8.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z" />
-              </svg>
-              Contactar por WhatsApp
-            </Link>
-          </div>
-        </div>
+      <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
-        <div className="md:w-1/2 mt-8 md:mt-0 animate-fade-in-up animation-delay-1200">
-          <form className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-teal-600 text-xl font-semibold mb-4">Contáctanos</h3>
-            <div className="mb-4">
-              <label htmlFor="name" className="sr-only">Nombre</label>
-              <input type="text" id="name" name="name" placeholder="Nombre" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required />
+      <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight font-sans">
+            Ansa <span className="text-teal-300">Medic-Dent</span>
+          </h1>
+          <p className="text-xl lg:text-2xl mb-8 max-w-3xl mx-auto font-light">
+            Transformamos la práctica dental con innovación, calidad superior y soporte técnico excepcional
+          </p>
+          <motion.button
+            className="bg-teal-500 text-white hover:bg-teal-400 font-bold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg"
+            whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(0,255,255,0.5)" }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Descubre nuestros productos"
+          >
+            Descubre Nuestros Productos <FaArrowRight className="inline-block ml-2" />
+          </motion.button>
+        </motion.div>
+
+        <motion.div
+          className="w-full max-w-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {isSubmitted ? (
+            <div className="bg-white/10 backdrop-blur-md p-8 rounded-lg shadow-xl text-center">
+              <h3 className="text-2xl font-semibold mb-4 text-teal-300">¡Gracias por tu solicitud!</h3>
+              <p className="text-white">Nos pondremos en contacto contigo pronto.</p>
             </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="sr-only">Correo electrónico</label>
-              <input type="email" id="email" name="email" placeholder="Correo electrónico" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="sr-only">Mensaje</label>
-              <textarea id="message" name="message" placeholder="Mensaje" rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required></textarea>
-            </div>
-            <button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
-              Enviar
-            </button>
-          </form>
-        </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-md p-8 rounded-lg shadow-xl">
+              <h3 className="text-2xl font-semibold mb-6 text-center text-teal-300">Solicita Información</h3>
+              <div className="mb-4">
+                <input type="text" id="name" name="name" placeholder="Nombre" className="w-full px-4 py-3 bg-white/20 border border-teal-300/50 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 text-white placeholder-teal-200 transition-all duration-300 hover:bg-white/30" required />
+              </div>
+              <div className="mb-4">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" className="w-full px-4 py-3 bg-white/20 border border-teal-300/50 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 text-white placeholder-teal-200 transition-all duration-300 hover:bg-white/30" required />
+              </div>
+              <div className="mb-6">
+                <textarea id="message" name="message" placeholder="Mensaje" rows={3} className="w-full px-4 py-3 bg-white/20 border border-teal-300/50 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 text-white placeholder-teal-200 transition-all duration-300 hover:bg-white/30" required></textarea>
+              </div>
+              <motion.button
+                type="submit"
+                className="w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-4 rounded-md transition duration-300 flex items-center justify-center shadow-lg"
+                disabled={isLoading}
+                whileHover={{ scale: 1.03, boxShadow: "0px 0px 8px rgba(0,255,255,0.5)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    Enviar Solicitud <FaEnvelope className="ml-2" />
+                  </>
+                )}
+              </motion.button>
+            </form>
+          )}
+        </motion.div>
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-teal-300 scale-125' : 'bg-white/50 hover:bg-white/75'
+              }`}
+            onClick={() => setCurrentSlide(index)}
+            aria-label={`Ir a diapositiva ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );

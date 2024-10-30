@@ -1,8 +1,8 @@
 // utils/constants.ts
 
 export const SEO_CONSTANTS = {
-    HOME_TITLE: "DentalPro Supplies - Insumos Odontológicos de Calidad",
-    HOME_DESCRIPTION: "DentalPro Supplies: Tu distribuidor de confianza para insumos odontológicos de calidad y servicio técnico especializado. Innovación y excelencia para tu práctica dental.",
+    HOME_TITLE: "Ansa Medic Dent - Insumos Odontológicos de Calidad",
+    HOME_DESCRIPTION: "Ansa Medic Dent: Tu distribuidor de confianza para insumos odontológicos de calidad y servicio técnico especializado. Innovación y excelencia para tu práctica dental.",
     HOME_KEYWORDS: "insumos dentales, equipos odontológicos, servicio técnico dental, suministros odontológicos",
     HOME_OG_TITLE: "DentalPro Supplies - Insumos Odontológicos de Calidad",
     HOME_OG_DESCRIPTION: "Descubre nuestra amplia gama de insumos y equipos dentales de alta calidad. Servicio técnico especializado y soporte continuo para tu práctica odontológica.",
