@@ -37,9 +37,9 @@ function getAllProducts(): Product[] {
   return ProductsCategoriesData.categories.flatMap(category => category.products);
 }
 
-function getProductById(productId: string): Product | undefined {
-  return getAllProducts().find(product => product.id === productId);
-}
+// function getProductById(productId: string): Product | undefined {
+//   return getAllProducts().find(product => product.id === productId);
+// }
 
 export default function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
