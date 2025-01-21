@@ -1,6 +1,5 @@
 name: Build
 
-
 on:
   push:
     branches:
@@ -10,7 +9,7 @@ on:
 jobs:
   build:
     name: Build and analyze
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +17,11 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - uses: SonarSource/sonarqube-scan-action@v4
         env:
-          SONAR_TOKEN: "sqp_0c43ff5c9cd88e51fab899d0999c20e65013041e"
-          SONAR_HOST_URL: "localhost:9000"
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: "tcp://8.tcp.ngrok.io:13327"
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: SonarSource/sonarqube-quality-gate-action@v1
       #   timeout-minutes: 5
       #   env:
-      #     SONAR_TOKEN:"sqp_0c43ff5c9cd88e51fab899d0999c20e65013041e"
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
