@@ -1,4 +1,5 @@
 name: Build
+run: sonnar-scanner -x
 
 on:
   push:
