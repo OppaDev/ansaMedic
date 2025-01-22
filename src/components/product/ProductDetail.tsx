@@ -24,7 +24,7 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
   if (!isOpen) return null;
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/0999120734', '_blank');
+    window.open('https://wa.me/0999120734', "WindowName", "noopener");
   };
 
   // Usar las imágenes del primer elemento de detalles si existen, de lo contrario usar imageUrl
