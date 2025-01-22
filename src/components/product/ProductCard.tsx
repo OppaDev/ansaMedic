@@ -22,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/0999120734', '_blank');
+    window.open('https://wa.me/0999120734', "WindowName", "noopener");
   };
 
   const handleLearnMoreClick = () => {
